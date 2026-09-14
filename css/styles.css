@@ -1,0 +1,117 @@
+/* si cambio un color aquí, cambia en todo el sitio */
+:root{
+  --sand:#FBF3E4;
+  --sand-deep:#F3E4C8;
+  --teal:#0F6E63;
+  --teal-deep:#0A4F47;
+  --coral:#FF6B52;
+  --coral-deep:#E1543D;
+  --yellow:#FFC24B;
+  --leaf:#3FA66B;
+  --violet:#7B6BD9;
+  --ink:#28352F;
+  --white:#FFFDF8;
+  --font-display:'Baloo 2', system-ui, sans-serif;
+  --font-body:'Atkinson Hyperlegible', system-ui, sans-serif;
+}
+
+*{ box-sizing: border-box; }
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 74px; /* compensa el header fijo al saltar entre secciones */
+}
+body{
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--sand);
+  margin: 0;
+}
+h1, h2, h3{ font-family: var(--font-display); color: var(--teal-deep); }
+
+/* enlace de salto: oculto hasta que recibe foco por teclado */
+.skip-link{
+  position: absolute; left: -999px; top: 0;
+  background: var(--teal); color: var(--white);
+  padding: 10px 16px; border-radius: 0 0 8px 0; z-index: 1000;
+}
+.skip-link:focus{ left: 0; }
+
+/* ===================== header ===================== */
+.header-principal{
+  background: var(--white);
+  border-bottom: 3px solid var(--sand-deep);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.contenedor-header{
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.logo{ display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-imagen{ display: block; }
+.logo-texto{ font-family: var(--font-display); font-weight: 800; color: var(--teal-deep); font-size: 20px; }
+.boton-menu{ background: transparent; border: 2px solid var(--teal); border-radius: 8px; padding: 6px 10px; cursor: pointer; }
+
+.menu-lista{ list-style: none; display: flex; flex-direction: column; gap: 14px; margin: 0; padding: 14px 0 6px; }
+.menu-enlace{ font-family: var(--font-display); font-weight: 700; color: var(--ink); text-decoration: none; }
+.menu-enlace:hover{ color: var(--teal); }
+.menu-enlace.active{ color: var(--coral); } /* la marca script.js según la sección visible */
+.menu-boton{
+  background: var(--coral);
+  color: var(--white) !important; /* necesario: .menu-enlace:hover es más específico y le ganaría el color */
+  border-radius: 100px; padding: 8px 20px; display: inline-block; width: fit-content;
+}
+
+/* quitamos "navbar-expand-lg" de bootstrap al simplificar el header,
+   así que forzamos aquí que el menú se vea siempre en pantallas grandes */
+@media (min-width: 992px){
+  .boton-menu{ display: none; }
+  .navbar-collapse{ display: flex !important; } /* necesario: sobrescribe el display:none por defecto de .collapse */
+  .menu-lista{ flex-direction: row; padding-top: 0; }
+}
+
+/* ===================== hero ===================== */
+.hero{ background: var(--teal); color: var(--white); padding: 70px 20px; text-align: center; }
+.eyebrow{ font-family: var(--font-display); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 12px; color: var(--yellow); }
+.hero h1{ color: var(--white); font-size: 36px; margin: 10px 0 16px; }
+.hero-texto{ max-width: 560px; margin: 0 auto 26px; color: #EAF6F2; }
+.btn-hero{
+  font-family: var(--font-display);
+  font-weight: 700;
+  background: var(--coral);
+  color: var(--white);
+  border-radius: 100px;
+  padding: 13px 28px;
+  box-shadow: 0 6px 0 var(--coral-deep);
+  text-decoration: none;
+  display: inline-block;
+}
+.btn-hero:hover{ color: var(--white); }
+
+/* ===================== secciones generales ===================== */
+.seccion{ padding: 64px 0; }
+.seccion-alt{ background: var(--sand-deep); }
+.seccion h2{ margin-bottom: 18px; }
+.seccion p{ line-height: 1.6; max-width: 720px; }
+
+/* ===================== tarjetas de facetas ===================== */
+.faceta-card{
+  background: var(--white); border-radius: 22px; padding: 26px 22px; height: 100%;
+  border: 3px solid transparent; transition: border-color .15s, transform .15s;
+}
+.faceta-card:hover{ transform: translateY(-4px); }
+.icono-faceta{ font-size: 30px; margin-bottom: 10px; }
+.f1:hover{ border-color: var(--leaf); }
+.f2:hover{ border-color: var(--yellow); }
+.f3:hover{ border-color: var(--violet); }
+
+/* ===================== footer ===================== */
+.site-footer{ background: var(--teal-deep); color: var(--white); padding: 40px 0; }
+.footer-marca{ font-family: var(--font-display); font-weight: 800; font-size: 20px; margin-bottom: 4px; }
+.footer-copy{ font-size: 12px; color: #cfe6e1; }
