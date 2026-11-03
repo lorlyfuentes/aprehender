@@ -1,5 +1,15 @@
 /* si cambio un color aquí, cambia en todo el sitio */
 :root{
+  /* paleta nueva */
+  --tinta:#1F2A44;
+  --crema:#FFF9EC;
+  --crema-fuerte:#FFF1B8;
+  --sol:#FFD23F;
+  --uva:#5B3FE0;
+  --menta:#25C2A0;
+  --blanco:#FFFFFF;
+
+  /* paleta vieja: se borra en el commit 6, cuando el resto del CSS ya no la use */
   --sand:#FBF3E4;
   --sand-deep:#F3E4C8;
   --teal:#0F6E63;
@@ -18,28 +28,32 @@
 *{ box-sizing: border-box; }
 html{
   scroll-behavior: smooth;
-  scroll-padding-top: 74px; /* compensa el header fijo al saltar entre secciones */
+  scroll-padding-top: 84px; /* compensa el header fijo al saltar entre secciones */
 }
 body{
   font-family: var(--font-body);
-  color: var(--ink);
-  background: var(--sand);
+  color: var(--tinta);
+  background: var(--crema);
   margin: 0;
 }
-h1, h2, h3{ font-family: var(--font-display); color: var(--teal-deep); }
+h1, h2, h3{ font-family: var(--font-display); color: var(--tinta); }
+
+/* foco visible para quien navega con teclado */
+:focus-visible{ outline: 4px solid var(--uva); outline-offset: 3px; }
+.hero :focus-visible, .site-footer :focus-visible{ outline-color: var(--sol); }
 
 /* enlace de salto: oculto hasta que recibe foco por teclado */
 .skip-link{
   position: absolute; left: -999px; top: 0;
-  background: var(--teal); color: var(--white);
+  background: var(--tinta); color: var(--blanco);
   padding: 10px 16px; border-radius: 0 0 8px 0; z-index: 1000;
 }
 .skip-link:focus{ left: 0; }
 
 /* ===================== header ===================== */
 .header-principal{
-  background: var(--white);
-  border-bottom: 3px solid var(--sand-deep);
+  background: var(--blanco);
+  border-bottom: 4px solid var(--tinta);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -47,7 +61,7 @@ h1, h2, h3{ font-family: var(--font-display); color: var(--teal-deep); }
 .contenedor-header{
   max-width: 1140px;
   margin: 0 auto;
-  padding: 12px 20px;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -55,25 +69,39 @@ h1, h2, h3{ font-family: var(--font-display); color: var(--teal-deep); }
 }
 .logo{ display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .logo-imagen{ display: block; }
-.logo-texto{ font-family: var(--font-display); font-weight: 800; color: var(--teal-deep); font-size: 20px; }
-.boton-menu{ background: transparent; border: 2px solid var(--teal); border-radius: 8px; padding: 6px 10px; cursor: pointer; }
+.logo-texto{ font-family: var(--font-display); font-weight: 800; color: var(--tinta); font-size: 20px; }
 
-.menu-lista{ list-style: none; display: flex; flex-direction: column; gap: 14px; margin: 0; padding: 14px 0 6px; }
-.menu-enlace{ font-family: var(--font-display); font-weight: 700; color: var(--ink); text-decoration: none; }
-.menu-enlace:hover{ color: var(--teal); }
-.menu-enlace.active{ color: var(--coral); } /* la marca script.js según la sección visible */
-.menu-boton{
-  background: var(--coral);
-  color: var(--white) !important; /* necesario: .menu-enlace:hover es más específico y le ganaría el color */
-  border-radius: 100px; padding: 8px 20px; display: inline-block; width: fit-content;
+@media (max-width: 480px){ .logo-texto{ font-size: 16px; } .logo{ gap: 8px; } }
+
+/* botón hamburguesa dibujado con tres líneas (no depende de bootstrap) */
+.boton-menu{
+  background: var(--sol); border: 3px solid var(--tinta); border-radius: 12px;
+  padding: 9px 10px; cursor: pointer; display: flex; flex-direction: column; gap: 5px;
 }
+.boton-menu-linea{ display: block; width: 24px; height: 3px; background: var(--tinta); border-radius: 2px; }
+
+.navbar-collapse{ flex-basis: 100%; } /* en móvil el menú ocupa todo el ancho bajo el botón */
+.menu-lista{ list-style: none; display: flex; flex-direction: column; gap: 14px; margin: 0; padding: 14px 0 6px; }
+.menu-enlace{
+  font-family: var(--font-display); font-weight: 700; color: var(--tinta);
+  text-decoration: none; padding-bottom: 2px; border-bottom: 3px solid transparent;
+}
+.menu-enlace:hover{ border-bottom-color: var(--sol); }
+.menu-enlace.active{ border-bottom-color: var(--uva); color: var(--uva); } /* la marca script.js según la sección visible */
+.menu-boton{
+  background: var(--sol);
+  color: var(--tinta) !important; /* necesario: otras reglas del enlace le ganarían el color */
+  border: 3px solid var(--tinta); border-radius: 100px; padding: 6px 20px; display: inline-block; width: fit-content;
+  box-shadow: 0 4px 0 var(--tinta);
+}
+.menu-boton:hover{ transform: translateY(-2px); }
 
 /* quitamos "navbar-expand-lg" de bootstrap al simplificar el header,
    así que forzamos aquí que el menú se vea siempre en pantallas grandes */
 @media (min-width: 992px){
   .boton-menu{ display: none; }
   .navbar-collapse{ display: flex !important; } /* necesario: sobrescribe el display:none por defecto de .collapse */
-  .menu-lista{ flex-direction: row; padding-top: 0; }
+  .menu-lista{ flex-direction: row; align-items: center; padding-top: 0; }
 }
 
 /* ===================== hero ===================== */
