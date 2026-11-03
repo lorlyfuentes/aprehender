@@ -93,6 +93,7 @@ h1, h2, h3{ font-family: var(--font-display); color: var(--teal-deep); }
   display: inline-block;
 }
 .btn-hero:hover{ color: var(--white); }
+.hero-nicoo{ display: block; margin: 28px auto 0; width: 170px; height: auto; }
 
 /* ===================== secciones generales ===================== */
 .seccion{ padding: 64px 0; }
@@ -114,4 +115,5 @@ h1, h2, h3{ font-family: var(--font-display); color: var(--teal-deep); }
 /* ===================== footer ===================== */
 .site-footer{ background: var(--teal-deep); color: var(--white); padding: 40px 0; }
 .footer-marca{ font-family: var(--font-display); font-weight: 800; font-size: 20px; margin-bottom: 4px; }
+.footer-imagen{ vertical-align: middle; margin-right: 8px; }
 .footer-copy{ font-size: 12px; color: #cfe6e1; }
