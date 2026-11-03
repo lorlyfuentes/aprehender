@@ -100,13 +100,13 @@ h1, h2, h3{ font-family: var(--font-display); color: var(--teal-deep); }
 .seccion h2{ margin-bottom: 18px; }
 .seccion p{ line-height: 1.6; max-width: 720px; }
 
-/* ===================== tarjetas de facetas ===================== */
-.faceta-card{
+/* ===================== tarjetas de niveles ===================== */
+.nivel-card{
   background: var(--white); border-radius: 22px; padding: 26px 22px; height: 100%;
   border: 3px solid transparent; transition: border-color .15s, transform .15s;
 }
-.faceta-card:hover{ transform: translateY(-4px); }
-.icono-faceta{ font-size: 30px; margin-bottom: 10px; }
+.nivel-card:hover{ transform: translateY(-4px); }
+.icono-nivel{ display: block; width: 64px; height: 64px; margin-bottom: 10px; }
 .f1:hover{ border-color: var(--leaf); }
 .f2:hover{ border-color: var(--yellow); }
 .f3:hover{ border-color: var(--violet); }
