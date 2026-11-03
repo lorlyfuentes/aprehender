@@ -1,27 +1,18 @@
-/* =========================================================
-   1)cerrar el menú móvil al elegir una opción
-   bootstrap abre el menú con el botón hamburguesa, pero no lo
-   cierra automáticamente cuando el usuario hace clic en un
-   enlace. sin esto, el menú se quedaría abierto tapando la
-   sección a la que se acaba de saltar
-========================================================= */
+/* 1) cerrar el menú móvil al elegir una opción
+   bootstrap abre el menú con el botón hamburguesa pero no lo cierra
+   al hacer clic en un enlace; sin esto el menú tapa la sección a la que se salta */
 document.querySelectorAll('#navMenu .menu-enlace').forEach(function (enlace) {
   enlace.addEventListener('click', function () {
-    var menu = document.getElementById('navMenu');
-    var instancia = bootstrap.Collapse.getOrCreateInstance(menu);
-    instancia.hide();
+    const menu = document.getElementById('navMenu');
+    bootstrap.Collapse.getOrCreateInstance(menu).hide();
   });
 });
 
 
-/* =========================================================
-   2) resaltar en el menú la sección visible en pantalla
-   mientras el usuario hace scroll, este bloque detecta qué
-   sección está viendo y le cambia el color al enlace del menú
-   correspondiente (como el punto que se mueve en un gps).
-   se escribió a mano, en vez de usar el scrollspy de bootstrap,
-   para tener control total sobre cómo funciona
-========================================================= */
+/* 2) resaltar en el menú la sección visible
+   se escribió a mano en vez de usar el scrollspy de bootstrap.
+   rootMargin deja una franja en el centro de la pantalla: la sección
+   que cruza esa franja es la activa, aunque sea más alta que la pantalla */
 const secciones = document.querySelectorAll('main section[id]');
 const enlacesMenu = document.querySelectorAll('#navMenu .menu-enlace');
 
@@ -30,14 +21,11 @@ const observador = new IntersectionObserver(function (entradas) {
     if (entrada.isIntersecting) {
       const idVisible = entrada.target.getAttribute('id');
       enlacesMenu.forEach(function (enlace) {
-        enlace.classList.remove('active');
-        if (enlace.getAttribute('href') === '#' + idVisible) {
-          enlace.classList.add('active');
-        }
+        enlace.classList.toggle('active', enlace.getAttribute('href') === '#' + idVisible);
       });
     }
   });
-}, { threshold: 0.5 });
+}, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 
 secciones.forEach(function (seccion) {
   observador.observe(seccion);
