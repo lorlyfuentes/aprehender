@@ -1,6 +1,5 @@
 /* si cambio un color aquí, cambia en todo el sitio */
 :root{
-  /* paleta nueva */
   --tinta:#1F2A44;
   --crema:#FFF9EC;
   --crema-fuerte:#FFF1B8;
@@ -8,19 +7,6 @@
   --uva:#5B3FE0;
   --menta:#25C2A0;
   --blanco:#FFFFFF;
-
-  /* paleta vieja: se borra en el commit 6, cuando el resto del CSS ya no la use */
-  --sand:#FBF3E4;
-  --sand-deep:#F3E4C8;
-  --teal:#0F6E63;
-  --teal-deep:#0A4F47;
-  --coral:#FF6B52;
-  --coral-deep:#E1543D;
-  --yellow:#FFC24B;
-  --leaf:#3FA66B;
-  --violet:#7B6BD9;
-  --ink:#28352F;
-  --white:#FFFDF8;
   --font-display:'Baloo 2', system-ui, sans-serif;
   --font-body:'Atkinson Hyperlegible', system-ui, sans-serif;
 }
@@ -105,43 +91,67 @@ h1, h2, h3{ font-family: var(--font-display); color: var(--tinta); }
 }
 
 /* ===================== hero ===================== */
-.hero{ background: var(--teal); color: var(--white); padding: 70px 20px; text-align: center; }
-.eyebrow{ font-family: var(--font-display); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 12px; color: var(--yellow); }
-.hero h1{ color: var(--white); font-size: 36px; margin: 10px 0 16px; }
-.hero-texto{ max-width: 560px; margin: 0 auto 26px; color: #EAF6F2; }
+.hero{ background: var(--uva); color: var(--blanco); padding: 56px 20px 40px; text-align: center; overflow: hidden; }
+.eyebrow{
+  display: inline-block; font-family: var(--font-display); font-weight: 800; letter-spacing: 1.5px;
+  text-transform: uppercase; font-size: 13px; color: var(--tinta); background: var(--sol);
+  border: 3px solid var(--tinta); border-radius: 100px; padding: 4px 14px;
+}
+.hero h1{
+  color: var(--blanco); font-size: clamp(34px, 8vw, 60px); line-height: 1.05;
+  margin: 18px 0 16px; text-shadow: 0 4px 0 var(--tinta);
+}
+.hero-texto{ max-width: 560px; margin: 0 auto 26px; color: var(--blanco); font-size: 18px; }
 .btn-hero{
   font-family: var(--font-display);
-  font-weight: 700;
-  background: var(--coral);
-  color: var(--white);
+  font-weight: 800;
+  font-size: 20px;
+  background: var(--sol);
+  color: var(--tinta);
+  border: 4px solid var(--tinta);
   border-radius: 100px;
-  padding: 13px 28px;
-  box-shadow: 0 6px 0 var(--coral-deep);
+  padding: 12px 32px;
+  box-shadow: 0 6px 0 var(--tinta);
   text-decoration: none;
   display: inline-block;
+  transition: transform .1s ease, box-shadow .1s ease;
 }
-.btn-hero:hover{ color: var(--white); }
-.hero-nicoo{ display: block; margin: 28px auto 0; width: 170px; height: auto; }
+.btn-hero:hover{ color: var(--tinta); transform: translateY(-2px); box-shadow: 0 8px 0 var(--tinta); }
+.btn-hero:active{ transform: translateY(6px); box-shadow: 0 0 0 var(--tinta); }
+.hero-nicoo{ display: block; margin: 28px auto 0; width: 170px; height: auto; filter: drop-shadow(0 8px 0 rgba(31,42,68,.35)); }
 
 /* ===================== secciones generales ===================== */
 .seccion{ padding: 64px 0; }
-.seccion-alt{ background: var(--sand-deep); }
-.seccion h2{ margin-bottom: 18px; }
-.seccion p{ line-height: 1.6; max-width: 720px; }
+.seccion-alt{ background: var(--crema-fuerte); }
+.seccion h2{ margin-bottom: 18px; font-size: clamp(28px, 5vw, 38px); }
+.seccion p{ line-height: 1.6; max-width: 720px; font-size: 18px; }
 
 /* ===================== tarjetas de niveles ===================== */
 .nivel-card{
-  background: var(--white); border-radius: 22px; padding: 26px 22px; height: 100%;
-  border: 3px solid transparent; transition: border-color .15s, transform .15s;
+  border: 4px solid var(--tinta); border-radius: 28px; padding: 26px 22px; height: 100%;
+  box-shadow: 0 8px 0 var(--tinta); transition: transform .15s ease, box-shadow .15s ease;
 }
-.nivel-card:hover{ transform: translateY(-4px); }
-.icono-nivel{ display: block; width: 64px; height: 64px; margin-bottom: 10px; }
-.f1:hover{ border-color: var(--leaf); }
-.f2:hover{ border-color: var(--yellow); }
-.f3:hover{ border-color: var(--violet); }
+.nivel-card:hover{ transform: translateY(-4px); box-shadow: 0 12px 0 var(--tinta); }
+.nivel-card h3{ font-size: 24px; margin: 12px 0 8px; }
+.nivel-card p{ margin: 0; }
+.icono-nivel{ display: block; width: 64px; height: 64px; background: var(--blanco); border: 4px solid var(--tinta); border-radius: 50%; padding: 8px; }
+.f1{ background: var(--menta); }
+.f2{ background: var(--sol); }
+.f3{ background: var(--uva); }
+.f3 h3, .f3 p{ color: var(--blanco); }
 
 /* ===================== footer ===================== */
-.site-footer{ background: var(--teal-deep); color: var(--white); padding: 40px 0; }
+.site-footer{ background: var(--tinta); color: var(--blanco); padding: 40px 0; }
 .footer-marca{ font-family: var(--font-display); font-weight: 800; font-size: 20px; margin-bottom: 4px; }
 .footer-imagen{ vertical-align: middle; margin-right: 8px; }
-.footer-copy{ font-size: 12px; color: #cfe6e1; }
+.footer-copy{ font-size: 13px; color: #D5DBEA; }
+
+/* respeta a quien tiene activada la opción de reducir movimiento */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ transition: none !important; animation: none !important; }
+}
+@media (prefers-reduced-motion: no-preference){
+  .hero-nicoo{ animation: rebote 2.4s ease-in-out infinite; }
+  @keyframes rebote{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-8px); } }
+}
